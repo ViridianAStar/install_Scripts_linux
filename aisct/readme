@@ -1,0 +1,9 @@
+The first command line arguement you must provide is the drive which you wish to install Arch on. you can find this by running fdisk -l and providing its name in the same format that
+the output of fdisk -l gives you. Do: /dev/sdXX Don't: sdXX
+
+The second command line arguement you must provide is your username. This MUST BE all lowercase with no whitespaces. Do: banana Don't: ban ana
+
+The third command line arguement you must provide is your password. It is what you will use to login don't mess it up
+
+Connect to the internet via "iwctl"> "station list"> "station connect [your network name here]"> verify it is connected in the station list menu> "exit" 
+Verify with a simple ping to google.com via "ping google.com"

@@ -7,10 +7,8 @@ ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 hwclock --systohc
 locale-gen
 cat "$USERNAME" "-device" >> /etc/hostname
-pacman -Syu nano lxappearance-gtk3 lxde-common lxpanel-gtk3 lxrandr-gtk3 lxtask-gtk3 lxterminal lxinput-gtk3 lxde-icon-theme lxmenu-data networkmanager nm-connection-editor libnma gdm3 sudo thunar grub efibootmgr
+pacman -Syu nano sudo grub efibootmgr --noconfirm
 wait
-systemctl enable NetworkManager
-systemctl enable gdm3
 mkinitcpio -P
 useradd -m -G wheel -s /bin/bash $USERNAME
 rm /etc/sudoers -rf
@@ -141,6 +139,13 @@ root ALL=(ALL:ALL) ALL
 grub-mkconfig -o /boot/grub/grub.cfg
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 
+pacman -S lxappearance-gtk3 lxde-common lxpanel-gtk3 lxrandr-gtk3 lxtask-gtk3 lxterminal lxinput-gtk3 lxde-icon-theme lxmenu-data networkmanager nm-connection-editor libnma gdm3 thunar nmap code neofetch tailscale firefox wireshark-qt --noconfirm
+wait
+
+systemctl enable NetworkManager
+systemctl enable opensnitchd
+systemctl enable gdm3
+systemctl enable tailscaled
 
 ( echo $PASSWD; echo $PASSWD; ) | passwd
 ( echo $PASSWD; echo $PASSWD; ) | passwd $USERNAME
